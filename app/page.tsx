@@ -1,10 +1,7 @@
-import Image from "next/image";
-import Header from "./components/Header";
-
-export default function Home() {
+export default async function Home() {
   return (
-    <div className="">
-      <Header />
+    <div className="h-screen overflow-y-scroll bg-slate-200 dark:bg-darkmode-gray">
+      hihi
     </div>
   );
 }
