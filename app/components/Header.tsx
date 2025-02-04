@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import React from "react";
 import logo from "../logos/logo.svg";
@@ -9,6 +10,8 @@ import { DarkModeToggle } from "./DarkModeToggle";
 import { GoBell } from "react-icons/go";
 import { AiOutlineMenu } from "react-icons/ai";
 import UserAvatar from "./UserAvatar";
+import { Button } from "@/components/ui/button";
+import { signIn } from "next-auth/react";
 
 const Header = () => {
   return (
@@ -58,6 +61,12 @@ const Header = () => {
         <GoBell size={30} className="icon " />
         {/* <DarkModeToggle /> */}
         <UserAvatar name="Testing" image="https://github.com/shadcn.png" />
+        <Button
+          onClick={() => signIn()}
+          className="dark:bg-reddit-red dark:text-white rounded-full"
+        >
+          Log In
+        </Button>
       </div>
     </div>
   );

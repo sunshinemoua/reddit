@@ -1,10 +1,3 @@
-import Image from "next/image";
-import Header from "./components/Header";
-
-export default function Home() {
-  return (
-    <div className="">
-      <Header />
-    </div>
-  );
+export default async function Home() {
+  return <div>hihi</div>;
 }
