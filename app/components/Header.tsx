@@ -11,9 +11,11 @@ import { GoBell } from "react-icons/go";
 import { AiOutlineMenu } from "react-icons/ai";
 import UserAvatar from "./UserAvatar";
 import { Button } from "@/components/ui/button";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
+import UserButton from "./UserButton";
 
 const Header = () => {
+  const { data: session } = useSession();
   return (
     <div className="sticky top-0 z-50 flex justify-between bg-transparent px-4 py-3 shadow-sm">
       {/* Logo */}
@@ -49,25 +51,27 @@ const Header = () => {
         />
         <button type="submit" hidden />
       </form>
-
       {/* Right Side of Nav */}
-      <div className="flex items-center text-gray-400 mx-1 lg:mx-5 space-x-2 lg:space-x-4">
-        <CiSearch size={30} className="icon lg:hidden" />
-        <LuMessageCircleMore size={30} className="icon hidden lg:flex" />
-        <div className="flex items-center text-sm lg:pr-2 rounded-full hover:bg-gray-750">
-          <FiPlus size={30} className="p-1" />
-          <span className="hidden lg:flex"> Create</span>
+      {session ? (
+        <div className="flex items-center text-gray-400 mx-1 lg:mx-5 space-x-2 lg:space-x-4">
+          <CiSearch size={30} className="icon lg:hidden" />
+          <LuMessageCircleMore size={30} className="icon hidden lg:flex" />
+          <div className="flex items-center text-sm lg:pr-2 rounded-full hover:bg-gray-750">
+            <FiPlus size={30} className="p-1" />
+            <span className="hidden lg:flex"> Create</span>
+          </div>
+          <GoBell size={30} className="icon " />
+
+          <UserButton />
         </div>
-        <GoBell size={30} className="icon " />
-        {/* <DarkModeToggle /> */}
-        <UserAvatar name="Testing" image="https://github.com/shadcn.png" />
+      ) : (
         <Button
           onClick={() => signIn()}
           className="dark:bg-reddit-red dark:text-white rounded-full"
         >
           Log In
         </Button>
-      </div>
+      )}
     </div>
   );
 };

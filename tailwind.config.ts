@@ -14,6 +14,7 @@ export default {
         foreground: "var(--foreground)",
         "gray-750": "#293236",
         "reddit-red": "#d93900",
+        "darkmode-gray": "#0f1113",
       },
       borderRadius: {
         lg: "var(--radius)",
