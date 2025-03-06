@@ -17,7 +17,12 @@ const UserButton = () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
-        <UserAvatar name="Testing" image="https://github.com/shadcn.png" />
+        <UserAvatar
+          name={session?.user?.name || "User"}
+          image={`https://api.dicebear.com/7.x/avataaars/svg?seed=${
+            session?.user?.name || "placeholder"
+          }`}
+        />
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         <DropdownMenuItem className="flex flex-col items-start gap-0">

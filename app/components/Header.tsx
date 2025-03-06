@@ -13,13 +13,15 @@ import UserAvatar from "./UserAvatar";
 import { Button } from "@/components/ui/button";
 import { signIn, useSession } from "next-auth/react";
 import UserButton from "./UserButton";
+import { useRouter } from "next/navigation";
 
 const Header = () => {
   const { data: session } = useSession();
+  const router = useRouter();
+
   return (
     <div className="sticky top-0 z-50 flex justify-between bg-transparent px-4 py-3 shadow-sm">
       {/* Logo */}
-
       <div className="flex w-fit items-center cursor-pointer">
         <AiOutlineMenu
           className="m-auto mr-4 dark:text-gray-500 lg:hidden"
@@ -56,12 +58,14 @@ const Header = () => {
         <div className="flex items-center text-gray-400 mx-1 lg:mx-5 space-x-2 lg:space-x-4">
           <CiSearch size={30} className="icon lg:hidden" />
           <LuMessageCircleMore size={30} className="icon hidden lg:flex" />
-          <div className="flex items-center text-sm lg:pr-2 rounded-full hover:bg-gray-750">
+          <div
+            onClick={() => router.push("/submit")}
+            className="flex items-center text-sm lg:pr-2 rounded-full hover:bg-gray-750 cursor-pointer"
+          >
             <FiPlus size={30} className="p-1" />
             <span className="hidden lg:flex"> Create</span>
           </div>
           <GoBell size={30} className="icon " />
-
           <UserButton />
         </div>
       ) : (
